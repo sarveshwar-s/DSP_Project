@@ -13,7 +13,6 @@ model = load("../models/model_1.joblib")
 @app.route("/")
 def homepage():
     # This should route to streamlit
-    model.predict([[""]])
     return "Hello Again from flask!!"
 
 @app.route("/energy/predict/")
