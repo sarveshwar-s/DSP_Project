@@ -144,5 +144,5 @@ def model_evaluation(model, y_pred: np.ndarray, y_test: np.ndarray, precision: i
     rmsle = np.sqrt(mean_squared_log_error(y_test, y_pred))
     return round(rmsle, precision)
 
-prediction_score = train("/","../models/")
-print(prediction_score)
+# prediction_score = train("/","../models/")
+# print(prediction_score)

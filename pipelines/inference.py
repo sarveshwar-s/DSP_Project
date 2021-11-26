@@ -3,17 +3,16 @@
 import pandas as pd 
 import numpy as np 
 from train import preprocessing_pipeline, prepare_data
-
+from joblib import load
 
 
 def load_model(path: str) -> object:
-  from joblib import dump, load
   loaded_model = load(path)
   return loaded_model
 
 
 # Inference pipeline
-def inference(test_path: str, model_path: str) -> np.ndarray:
+def inference(test_path: str, model_path: str, data) -> np.ndarray:
 
   data_master = prepare_data()
   data = data_master.copy()
