@@ -1,7 +1,10 @@
 from flask import Flask
-import requests
 
-if "__main__" == "__init__":
-    app = Flask()
+app = Flask(__name__)
+if __name__ == "__main__":
     app.run()
 
+# Adding routing files
+@app.route("/")
+def homepage():
+    return "Hello Again from flask!!"
