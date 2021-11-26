@@ -6,29 +6,37 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 import pandas as pd
 import numpy as np
+import mlflow
+from datetime import datetime
 
-
+#Setting up MLFLOW
+mlflow.set_tracking_uri('http://127.0.0.1:5000')
+experiment_name = "energy_model_prediction"
+mlflow.set_experiment(experiment_name)
 
 # put the main trainingn function
 def train(path: str , model_path: str) -> dict:
+    training_timestamp = datetime.now().strftime('%Y-%m-%d, %H:%M:%S')
+    with mlflow.start_run(run_name=f"model_{training_timestamp}"): # we can give a name to our runs.
+        mlflow.autolog() 
 
-    data_master = prepare_data()
-    data = data_master.copy()
+        data_master = prepare_data()
+        data = data_master.copy()
+        data = data.drop(labels=["day"], axis=1) #dropping the day column
+        y = data["energy_sum"]
 
-    y = data["energy_sum"]
+        processed_df = preprocessing_pipeline(data)
+        processed_df = processed_df.drop(labels=["energy_sum"], axis=1)
+        
+        X_train, X_test, y_train, y_test = perform_data_splitting(processed_df,y)
 
-    processed_df = preprocessing_pipeline(data)
-    processed_df = processed_df.drop(labels=["energy_sum"], axis=1)
-    
-    X_train, X_test, y_train, y_test = perform_data_splitting(processed_df,y)
+        model = training(X_train, y_train)
 
-    model = training(X_train, y_train)
+        y_predicted = model.predict(X_test)
 
-    y_predicted = model.predict(X_test)
+        model_score = model_evaluation(model,y_predicted, y_test)
 
-    model_score = model_evaluation(model,y_predicted, y_test)
-
-    model_path = store_model(model,model_path) # Saves the model
+        model_path = store_model(model,model_path) # Saves the model
 
     return {"model_performance": model_score, "model_path": model_path}
 
@@ -144,5 +152,5 @@ def model_evaluation(model, y_pred: np.ndarray, y_test: np.ndarray, precision: i
     rmsle = np.sqrt(mean_squared_log_error(y_test, y_pred))
     return round(rmsle, precision)
 
-# prediction_score = train("/","../models/")
-# print(prediction_score)
+prediction_score = train("/","../models/")
+print(prediction_score)
