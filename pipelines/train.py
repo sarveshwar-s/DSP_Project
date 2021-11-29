@@ -92,7 +92,7 @@ def get_encoded_data(categorical_data: pd.DataFrame, isInference = False) -> np.
         cat_df = categorical_data
         cat_df = cat_df.dropna(axis=0)
 
-        ohe = OneHotEncoder(handle_unknown = 'error')
+        ohe = OneHotEncoder(handle_unknown = 'ignore')
         encoded_categorical_fit = ohe.fit(cat_df)
         encoded_categorical_data = encoded_categorical_fit.transform(cat_df)
         store_model(encoded_categorical_fit,"../models/", isEncoder=True)

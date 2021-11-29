@@ -24,7 +24,7 @@ def inference(test_path: str, model_path: str) -> np.ndarray:
       
     data_master = prepare_data(test_path)
     data = data_master.copy()
-    data = data.drop(labels=["day"], axis=1) # dropping the day column.
+    # data = data.drop(labels=["day"], axis=1) # dropping the day column.
 
     processed_df = preprocessing_pipeline(data, isInference=True)
     processed_df = processed_df.drop(labels=["energy_sum"], axis=1)
@@ -54,5 +54,5 @@ def prepare_data(filepath):
     final_df = final_df.drop(["temperatureMaxTime"], axis=1)
     return final_df
 
-production_values = inference("../data/daily_dataset/block_0.csv", "../models/model_1.joblib")
+production_values = inference("../data/daily_dataset/block_1.csv", "../models/model_1.joblib")
 print(production_values)
