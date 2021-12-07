@@ -25,14 +25,19 @@ def inference(test_path: str, model_path: str) -> np.ndarray:
     data_master = prepare_data(test_path)
     data = data_master.copy()
     # data = data.drop(labels=["day"], axis=1) # dropping the day column.
-
+    data_to_db = data
+    data = data.drop(labels=["day"], axis=1) #dropping the day column
     processed_df = preprocessing_pipeline(data, isInference=True)
+
     processed_df = processed_df.drop(labels=["energy_sum"], axis=1)
+  
 
     model = load_model(model_path)
 
     predicted_price = model.predict(processed_df)
 
+    
+    
     return predicted_price
 
 def prepare_data(filepath):
