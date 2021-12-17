@@ -60,7 +60,6 @@ def insert_update_to_db(data_to_db, predicted_price):
   except (Exception, psycopg2.DatabaseError) as error:
     print(error)
 
-  pass
 
 def prepare_data(filepath):
     energy_data = pd.read_csv(filepath)
