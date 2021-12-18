@@ -22,3 +22,4 @@ def prediction_api():
     prediction_list = inference("../data/daily_dataset/block_0.csv", "../models/model_1.joblib")
     values = prediction_list.tolist()
     return jsonify({"Predicted_consumption":values})
+
