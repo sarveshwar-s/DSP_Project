@@ -1,0 +1,58 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "energy_weather_data_suite",
+  "expectations": [
+    {
+      "expectation_context": {
+        "description": null
+      },
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "temperatureMax",
+        "mostly": 1.0
+      },
+      "meta": {
+        "notes": {
+          "content": "Checks if max temp is not null",
+          "format": "markdown"
+        }
+      }
+    },
+    {
+      "expectation_context": {
+        "description": null
+      },
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "temperatureMin",
+        "mostly": 1.0
+      },
+      "meta": {
+        "notes": {
+          "content": "Checks if min temp is not null",
+          "format": "markdown"
+        }
+      }
+    },
+    {
+      "expectation_context": {
+        "description": null
+      },
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "temperatureMaxTime",
+        "mostly": 1.0
+      },
+      "meta": {
+        "notes": {
+          "content": "Checks if Day is not null",
+          "format": "markdown"
+        }
+      }
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.13.46"
+  }
+}
