@@ -1,0 +1,15 @@
+artifact_uri: ./mlruns/2/8f6a60d44cba47cc8191041a01997974/artifacts
+end_time: 1639826382169
+entry_point_name: ''
+experiment_id: '2'
+lifecycle_stage: active
+name: ''
+run_id: 8f6a60d44cba47cc8191041a01997974
+run_uuid: 8f6a60d44cba47cc8191041a01997974
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1639826378501
+status: 3
+tags: []
+user_id: sarve
